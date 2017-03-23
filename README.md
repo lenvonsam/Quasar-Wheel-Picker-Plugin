@@ -29,7 +29,9 @@
 ![Alt datepicker](screenshots/datepicker.png)
 
 ## Live Demo
-[Experience](http://www.baidu.com)
+[Experience](https://lenvonsam.github.io/Quasar-Wheel-Picker-Plugin/)
+
+![Alt qcode](screenshots/qcode.png)
 
 ## How to Use
 1. Install quasar-cli
