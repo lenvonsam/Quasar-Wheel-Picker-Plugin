@@ -45,14 +45,20 @@ $ npm install pug pug-loader pug-filters -D
 after install pug,find build/webpack.base.conf.js, then add block code like this:
 
 ![Alt pugdep](screenshots/pugdep.png)
+
 3. Copy src/components/picker fold to your project
 
 4. Import picker plugin
-   ![Alt importpicker](screenshots/imporpicker.png)
+
+![Alt importpicker](screenshots/imporpicker.png)
+
 5. Instance components
-   ![Alt components](screenshots/components.png)
+
+![Alt components](screenshots/components.png)
+
 6. Using components
-   ![Alt dompicker](screenshots/dompicker.png)
+
+![Alt dompicker](screenshots/dompicker.png)
 
 ## Build Setup Demo project
 
