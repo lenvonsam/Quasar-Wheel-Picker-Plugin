@@ -2,7 +2,7 @@
   div
     .picker-item.padding(v-for="(i,index) in items", :style="{height: `${itemHeight}px`}")
       transition(name="picker-modal")
-        div(v-if="(index+1)==wheelIndex",style="color:#fff;") {{i}}
+        div(v-if="(index+1)==wheelIndex",:style="{'color': itemColor}") {{i}}
         div(v-else) {{i}}
 </template>
 
@@ -21,6 +21,11 @@
         type: Number,
         required: false,
         default: 42
+      },
+      itemColor: {
+        type: String,
+        required: false,
+        default: '#fff'
       }
     }
   }
@@ -29,6 +34,8 @@
 <style type="text/css",scoped>
   .picker-item {
     overflow: hidden;
+    transition: all .3s;
+    color: #757575;
   }
 
   .picker-modal-enter-active,

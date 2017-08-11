@@ -1,6 +1,6 @@
-# Quasar Wheel Picker Plugin
+# Quasar Wheel Picker Plugin V1.5
 
-> A Quasar framework plugin
+> A Quasar framework plugin 
 
 ## Wheel Picker Types & screenshots
 
@@ -8,25 +8,25 @@
 
 * #### Max Group Picker(less then 3 group count)
 
-* #### City Picker(ZH)
+* #### City Picker(ZH) — update to 2016
 
 * #### Date Picker
 
-> ##### Basic Picker's screenshot
+> ##### Basic Picker's screenshot V1.0 & V1.5
 
-![Alt baiscpicker](screenshots/basicpicker.png)
+![Alt baiscpicker](screenshots/basicpicker.png)  ![Alt basicpicker1.5](screenshots/basicpicker1_5.png)
 
-> ##### Max Group Picker's screenshot
+> ##### Max Group Picker's screenshot V1.0 & V1.5
 
-![Alt maxpicker](screenshots/maxpicker.png)
+![Alt maxpicker](screenshots/maxpicker.png)  ![Alt maxpicker1.5](screenshots/maxpicker1_5.png)
 
-> ##### City Picker's screenshot
+> ##### City Picker's screenshot V1.0 & V1.5
 
-![Alt citypicker](screenshots/citypicker.png)
+![Alt citypicker](screenshots/citypicker.png) ![Alt citypicker1.5](screenshots/citypicker1_5.png)
 
-> ##### Date Picker's screenshot
+> ##### Date Picker's screenshot V1.0 & V1.5
 
-![Alt datepicker](screenshots/datepicker.png)
+![Alt datepicker](screenshots/datepicker.png) ![Alt datepicker1.5](screenshots/datepicker1_5.png)
 
 ## Live Demo
 [Experience](https://lenvonsam.github.io/Quasar-Wheel-Picker-Plugin/)
@@ -75,3 +75,9 @@ $ quasar build
 # lint code
 $ quasar lint
 ```
+
+## ChangeLog
+### ~ Version 1.5
+* every picker page extends five pickerItems
+* optimized picker UI
+* update China citypicker data to 2016(There is any mistake to welcome correction)

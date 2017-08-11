@@ -1,0 +1,71 @@
+@charset 'utf-8';
+
+.wheel-gray
+{
+    color: #757575;
+}
+.wheel-picker
+{
+    position: relative;
+
+    overflow: hidden;
+
+    height: 198px;
+}
+
+.wheel-picker .picker-part
+{
+    flex-direction: column;
+
+    transition: transform 1s ease;
+}
+
+.wheel-picker .part-top
+{
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+
+    height: 80px;
+    /*ie10*/
+
+    background:     -ms-linear-gradient(top, rgba(225,225,225,.1),rgba(225,225,225.3));
+    background:    -moz-linear-gradient(top,rgba(225,225,225,.1),rgba(225,225,225.3));
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%,from(rgba(225,225,225,.1)), to(rgba(225,225,225,.3)));
+    /* Safari 4-5, Chrome 1-9**/
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(225,225,225,.1)), to(rgba(225,225,225.3)));
+    background: -webkit-linear-gradient(top, rgba(225,225,225,.1), rgba(225,225,225.3));   /*Safari5.1 Chrome 10+*/
+    background:      -o-linear-gradient(top, rgba(225,225,225,.1), rgba(225,225,225.3));  /*Opera 11.10+*/
+}
+
+.wheel-picker .part-bottom
+{
+    position: absolute;
+    top: 120px;
+    right: 0;
+    left: 0;
+
+    height: 80px;
+
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%,from(rgba(225,225,225,.3)), to(rgba(225,225,225,.1)));
+    background:    -moz-linear-gradient(top,rgba(225,225,225,.3),rgba(225,225,225.1));
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(225,225,225,.3)), to(rgba(225,225,225.1)));
+    background: -webkit-linear-gradient(top, rgba(225,225,225,.3), rgba(225,225,225.1));   /*Safari5.1 Chrome 10+*/
+    background:      -o-linear-gradient(top, rgba(225,225,225,.3), rgba(225,225,225.1));  /*Opera 11.10+*/
+}
+
+.wheel-picker .middle-line
+{
+    position: absolute;
+    top: 80px;
+    right: 0;
+    left: 0;
+    /*background:rgba(255,255, 255);*/
+
+    height: 40px;
+
+    border-top: 1px solid #64b5f6;
+    border-bottom: 1px solid #64b5f6;
+    /*box-shadow:0 2px 2px 0 rgba(0,0,0,.14), 0 0px 5px 0 rgba(0,0,0,.12), 0 1px 2px -1px rgba(0,0,0,.4);*/
+}

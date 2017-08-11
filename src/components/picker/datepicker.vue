@@ -2,17 +2,19 @@
   q-modal(ref="pickerDateModal",position="bottom")
     .row.padding.border-bottom-line
       .auto
-        button.default.small(@click="valFunc('close')") 取消
+        button.default.small.wheel-gray(@click="valFunc('close')") 取消
       .auto.text-right
         button.primary.small.outline(@click="confirmFunc") 确定
     .row.wheel-picker
+      .part-top
+      .part-bottom
       .middle-line
       .auto.text-center.picker-part(v-touch-swipe="handlerYear",:style="{transform: `translate3d(0,${currenTranslateYear}px,0)`}")
-        picker-item(:items="yearArr", :wheelIndex="wheelIndexYear")
+        picker-item(:items="yearArr", :wheelIndex="wheelIndexYear", style="transition-timing-function: ease", :itemColor="'#0180ff'")
       .auto.text-center.picker-part(v-touch-swipe="handlerMonth",:style="{transform: `translate3d(0,${currenTranslateYMonth}px,0)`}")
-        picker-item(:items="monthArr", :wheelIndex="wheelIndexMonth")
+        picker-item(:items="monthArr", :wheelIndex="wheelIndexMonth", style="transition-timing-function: ease", :itemColor="'#0180ff'")
       .auto.text-center.picker-part(v-touch-swipe="handlerDay",:style="{transform: `translate3d(0,${currenTranslateYDay}px,0)`}")
-        picker-item(:items="dayArr", :wheelIndex="wheelIndexDay")
+        picker-item(:items="dayArr", :wheelIndex="wheelIndexDay", style="transition-timing-function: ease", :itemColor="'#0180ff'")
 </template>
 
 <script>
@@ -75,7 +77,7 @@
         this.yearArr = this.getYearArray()
         this.wheelIndexYear = this.yearArr.findIndex((element) => element === this.currentYear) + 1
         this.pickerValYear = `${this.currentYear}`
-        this.currenTranslateYear = 0 - (this.wheelIndexYear - 2) * this.itemHeight
+        this.currenTranslateYear = 0 - (this.wheelIndexYear - 3) * this.itemHeight
 
         // calc month of date
         let currentMonth = this.currentDate.getMonth() + 1
@@ -85,7 +87,7 @@
         }
         this.wheelIndexMonth = this.monthArr.findIndex((element) => element === monthVal) + 1
         this.pickerValMonth = monthVal
-        this.currenTranslateYMonth = 0 - (this.wheelIndexMonth - 2) * this.itemHeight
+        this.currenTranslateYMonth = 0 - (this.wheelIndexMonth - 3) * this.itemHeight
 
         // calc day of date
         let currentDay = this.currentDate.getDate()
@@ -96,7 +98,7 @@
         this.dayArr = this.getDayArray(this.currentYear, monthVal)
         this.wheelIndexDay = this.dayArr.findIndex((element) => element === dayVal) + 1
         this.pickerValDay = dayVal
-        this.currenTranslateYDay = 0 - (this.wheelIndexDay - 2) * this.itemHeight
+        this.currenTranslateYDay = 0 - (this.wheelIndexDay - 3) * this.itemHeight
       },
       getDayArray (year, month) {
         if (month === '02') {
@@ -163,27 +165,39 @@
         this.handler(obj, 'dayArr', 'wheelIndexDay', 'currenTranslateYDay', 'pickerValDay')
       },
       handler (obj, pickItemArrName, pickItemIndexName, currenTranslateYName, pickValName) {
-        let diff = obj.distance.y / this.itemHeight
+        let diff = 0
+        if (obj.distance.y > (this.itemHeight / 2)) {
+          diff = obj.distance.y / this.itemHeight
+        }
         let cindex = Math.round(diff)
-        const totalMin = (this[pickItemArrName].length - 2) * this.itemHeight
+        const totalMin = (this[pickItemArrName].length - 3) * this.itemHeight
+        const me = this
         if (obj.direction === 'up') {
-          this[pickItemIndexName] += cindex
-          this[currenTranslateYName] = 0 - ((this[pickItemIndexName] - 2) * this.itemHeight)
-          if (this[currenTranslateYName] < -totalMin) {
-            this[currenTranslateYName] = -totalMin
-            this[pickItemIndexName] = this[pickItemArrName].length
-          }
+          this[currenTranslateYName] = this[currenTranslateYName] - obj.distance.y
+          setTimeout(function () {
+            me[pickItemIndexName] += cindex
+            me[currenTranslateYName] = 0 - ((me[pickItemIndexName] - 3) * me.itemHeight)
+            if (me[currenTranslateYName] < -totalMin) {
+              me[currenTranslateYName] = -totalMin
+              me[pickItemIndexName] = me[pickItemArrName].length
+            }
+          }, obj.duration)
         }
 
         if (obj.direction === 'down') {
-          this[currenTranslateYName] += cindex * this.itemHeight
-          this[pickItemIndexName] -= cindex
-          if (this[currenTranslateYName] > this.itemHeight) {
-            this[currenTranslateYName] = this.itemHeight
-            this[pickItemIndexName] = 1
-          }
+          me[currenTranslateYName] = me[currenTranslateYName] + obj.distance.y
+          setTimeout(function () {
+            me[pickItemIndexName] -= cindex
+            me[currenTranslateYName] = me[currenTranslateYName] - obj.distance.y + cindex * me.itemHeight
+            if (me[currenTranslateYName] > me.itemHeight * 2) {
+              me[currenTranslateYName] = me.itemHeight * 2
+              me[pickItemIndexName] = 1
+            }
+          }, obj.duration)
         }
-        this[pickValName] = this[pickItemArrName][this[pickItemIndexName] - 1]
+        setTimeout(function () {
+          me[pickValName] = me[pickItemArrName][me[pickItemIndexName] - 1]
+        }, obj.duration)
         // change feb month days index
         if (this.pickerValMonth === '02') {
           if (this.isLeapYear(this.pickerValYear)) {
@@ -210,24 +224,5 @@
 </script>
 
 <style type="text/css",scoped>
-  .wheel-picker {
-    height:118px;
-    overflow:hidden;
-    position:relative;
-  }
-
-  .wheel-picker .picker-part {
-    transition: transform 1s ease;
-    flex-direction: column;
-  }
-
-  .wheel-picker .middle-line {
-    position:absolute;
-    background:rgba(0,0,0,.3);
-    height:39px;
-    top:39px;
-    left:0;
-    right:0;
-    box-shadow:0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12), 0 2px 4px -1px rgba(0,0,0,.4);
-  }
+  @import url("./picker.css");
 </style>

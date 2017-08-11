@@ -1,7 +1,7 @@
 <template lang="pug">
   q-layout
     .toolbar(slot="header")
-      q-toolbar-title(:padding='0') Quasar Wheelpicker demo
+      q-toolbar-title(:padding='0') Quasar Wheelpicker demo V1.5
     .layout-view.bg-gray
       .list.item-delimiter
         .item.bg-white(v-for="item in listData",@click="clickItem(item.type)")
@@ -41,10 +41,10 @@ export default {
       }],
       basicPickOpen: false,
       basicPickVal: '',
-      basicArr: [[1, 2, 3, 4, 5, 6, 7, 8]],
+      basicArr: [['orange', 'apple', 'banana', 'pear', 'grape', 'dragon fruit', 'pineapple', 'durian']],
       maxPickOpen: false,
       maxPickVal: '',
-      maxPickArr: [[1, 2, 3], [4, 6], [7, 8]],
+      maxPickArr: [[1, 2, 3], [4, 5, 6], [7, 8, 9]],
       cityPickVal: '',
       cityPickOpen: false,
       datePickVal: '',
