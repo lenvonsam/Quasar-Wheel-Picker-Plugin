@@ -1,5 +1,5 @@
 <template lang="pug">
-  q-modal(ref="pickerModel",position="bottom")
+  q-modal(ref="pickerModel",position="bottom", @close="valFunc('close')")
     .row.padding.border-bottom-line
       .auto
         button.default.small.wheel-gray(@click="valFunc('close')") 取消
